@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html>
-    <head></head>
+    <head>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet"
+              href="https://fonts.googleapis.com/css?family=Sawarabi+Gothic">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    </head>
     <body>
         <h1 id="displayTime">00:00:00</h1>
-        <button id="start">start</button>
-        <button id="stop">stop</button>
-        <button id="clear">reset</button>
-        <button id="debugger">debug</button>
+        <button id="start"><i class = "material-icons md-36">play_arrow</i></button>
+        <button id="stop"><i class = "material-icons md-36">pause</i></button>
+        <button id="clear"><i class = "material-icons md-36">replay</i></button>
+        <!--<button id="debugger">debug</button>-->
         <script src="proxy.js"></script>
         <script src="background.js"></script>
+        <script src="realTime.js"></script>
     <body>
 </html>
 

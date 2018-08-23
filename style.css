@@ -1,0 +1,68 @@
+h1{
+    font-size:45px;
+    font-weight: lighter;
+    text-align: center;
+    color: #001a4d;
+    font-family: 'Sawarabi Gothic', sans-serif;
+    margin-top:10px;
+
+}
+
+body{
+    background-color: white;
+    height: 65px !important;
+    width: 200px !important;
+    border-radius: 100px;
+}
+
+#start{
+    color: #001a4d;
+    background: transparent;
+    border-color:transparent;
+    position:absolute;
+    transition: 0.3s ease;
+    top: 65%;
+    left: 10%;
+}
+
+#start:hover {
+    color: #33c05b;
+    background-color: transparent;
+    border-color:transparent;
+}
+
+#stop{
+    color: #001a4d;
+    background: transparent;
+    border-color:transparent;
+    position:absolute;
+    transition: 0.3s ease;
+    top: 65%;
+    left: 37.5%;
+}
+
+#stop:hover {
+    color: #d13145;
+    background-color: transparent;
+    border-color:transparent;
+}
+
+#clear{
+    color: #001a4d;
+    background: transparent;
+    border-color:transparent;
+    position:absolute;
+    transition: 0.3s ease;
+    top: 65%;
+    left: 65%;
+}
+
+#clear:hover {
+    color: #3bc7d1;
+    background-color: transparent;
+    border-color:transparent;
+}
+
+.material-icons.md-36 {
+    font-size:32px;
+}

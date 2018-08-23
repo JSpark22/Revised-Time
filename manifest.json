@@ -1,16 +1,18 @@
 {
-  "name": "Revised Time",
+  "name": "Timing - a Stopwatch",
+  "short_name": "Stopwatch",
   "version": "1.0",
-  "description": "Simple test extension.",
+  "description": "A simple and reliable stopwatch for your timing needs.",
   "author": "James Park",
   "permissions": ["storage"],
   "background": {
     "scripts":["background.js","proxy.js"],
     "persistent" : false
   },
-  "manifest_version": 2,
+  "icons": {
+    "128": "Timing128.png" },
   "browser_action":{
-    "default_icon":"icon.png",
     "default_popup":"popup.html"
-  }
+  },
+  "manifest_version": 2
 }

@@ -1,10 +1,12 @@
-function setCookie(paused,elapsedTime){
-    var expire = new Date();
-    expire.setTime(expire.getTime() + 31536000000);
-    document.cookie = "paused =" + paused + ";" + "elapsedTime = " + elapsedTime + "expires=" + expire.toUTCString();
+/**
+ * A .js file that provides methods to save to localStorage.
+ * @author James Park
+ * @date 2018-08-22
+ */
+function uploadItem(name,value){
+    localStorage.setItem(name,value);
 }
 
-function getCookie(){
-    var cString = document.cookie;
-    
+function downloadItem(name){
+    return localStorage.getItem(name);
 }

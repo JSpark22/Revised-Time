@@ -1,15 +1,19 @@
-
-
+/**
+ * A .js file that provides interface for a functioning stopwatch.
+ * @author James Park
+ * @date 2018-08-22
+ */
 
 var h1 = document.getElementById('displayTime'), // time text
     start = document.getElementById('start'), // start button
     stop = document.getElementById('stop'), // stop button
     clear = document.getElementById('clear'), // reset button
     debug = document.getElementById('debugger'),
-    seconds, minutes, hours, // time variables for formatting ease
-    currTime = 0, newTime = 0, elapsedTime = 0, // time variables for tracking time
+    seconds, minutes, hours, centiseconds,// time variables for formatting ease
+    currTime = 0, newTime = 0, elapsedTime=0, // time variables for tracking time
     paused = true, // true if stopwatch has been paused, else false
-    running;
+    running,
+    started = false; //true if stopwatch is running, else false
 
 /**
  *  Correctly formats the time into a display string.
@@ -18,10 +22,14 @@ var h1 = document.getElementById('displayTime'), // time text
  */
 function setTime(milliseconds){
 
-    seconds = minutes = hours = 0;
+    centiseconds = seconds = minutes = hours = 0;
     // Correctly formats time.
+    if(milliseconds>=10){
+        centiseconds = Math.floor(milliseconds/10);
+    }
     if(milliseconds >= 1000){
         seconds = Math.floor(milliseconds / 1000);
+        centiseconds = centiseconds%100;
     } else {
         seconds = 0;
     }
@@ -34,12 +42,14 @@ function setTime(milliseconds){
         minutes = minutes%60;
     }
     let display = "";
-    if (hours > 9){
-        display += hours;
-    } else {
-        display += ("0" + hours);
+    if (hours > 0) {
+        if (hours > 9) {
+            display += hours;
+        } else {
+            display += ("0" + hours);
+        }
+        display += ":";
     }
-    display += ":";
     if (minutes > 9){
         display += minutes;
     } else {
@@ -50,6 +60,13 @@ function setTime(milliseconds){
         display += seconds;
     } else {
         display += ("0" + seconds);
+    }
+    if (hours < 1){
+        if (centiseconds < 10){
+            display += (".0" + centiseconds);
+        } else {
+            display += ("." + centiseconds);
+        }
     }
     return display;
 }
@@ -64,6 +81,9 @@ function timeDifference(currTime){
     newTime = Date.now();
     elapsedTime = newTime - currTime;
     h1.textContent = setTime(elapsedTime);
+    uploadItem("elapsedTime",elapsedTime);
+    uploadItem("currTime",currTime);
+    return elapsedTime;
 }
 
 /**
@@ -71,32 +91,6 @@ function timeDifference(currTime){
  */
 
 function initiateDisplay(){
-    running = setInterval(function(){timeDifference(currTime)},1000);
+    running = setInterval(function(){timeDifference(currTime)},10);
 }
 
-// Start button
-start.onclick = function(){
-    if (paused){
-        currTime = Date.now() - elapsedTime;
-        paused = false;
-        initiateDisplay();
-    }
-};
-
-// Stop button
-stop.onclick = function(){
-    clearInterval(running);
-    paused = true;
-};
-
-// Clear button
-clear.onclick = function() {
-    h1.textContent = "00:00:00";
-    elapsedTime = 0;
-    clearInterval(running);
-    paused = true;
-};
-
-debug.onclick = function(){
-    alert("elapsed time is " + elapsedTime);
-};
